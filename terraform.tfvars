@@ -313,7 +313,7 @@ slurm_nodeset_workers = [
     }
     boot_disk = {
       type                 = "NETWORK_SSD"
-      size_gibibytes       = 256
+      size_gibibytes       = 512
       block_size_kibibytes = 4
     }
     # No gpu_cluster — L40s does not support InfiniBand
@@ -427,7 +427,7 @@ slurm_exporter_enabled = true
 # - "testing" - to be used for Soperator E2E tests.
 # - "dev" - to be used for Soperator development clusters.
 # ---
-active_checks_scope = ""
+active_checks_scope = "dev"
 
 # endregion ActiveChecks
 
