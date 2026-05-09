@@ -51,8 +51,9 @@ controller_state_on_filestore = false
 # Remains for the backward compatibility.
 # ---
 filestore_controller_spool = {
-  existing = {
-    id = "computefilesystem-e02kwsfke317jevds1"
+  spec = {
+    size_gibibytes       = 128
+    block_size_kibibytes = 4
   }
 }
 
@@ -70,7 +71,7 @@ filestore_controller_spool = {
 # ---
 filestore_jail = {
   existing = {
-    id = "computefilesystem-e02j5pw8f0z0rmf9gq"
+    id = "computefilesystem-e00m8ghy7342rqa8mv"
   }
 }
 
@@ -92,7 +93,7 @@ filestore_jail_submounts = [{
   name       = "data"
   mount_path = "/mnt/data"
   existing = {
-    id = "computefilesystem-e02c40yywsa2wecdp6"
+    id = "computefilesystem-e00y7vfyr9nms4w82q"
   }
 }]
 

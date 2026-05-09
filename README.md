@@ -2,13 +2,6 @@
 
 Deploys a Slurm-on-K8s cluster with 2x L40s GPUs in eu-north1 using the Nebius Soperator.
 
-## Prerequisites
-
-- [Nebius CLI](https://docs.nebius.com/cli/install) installed and authenticated (`nebius iam whoami`)
-- `yq` installed (`brew install yq`)
-- `terraform` installed
-- `jq` installed
-
 ## Deployment
 
 ```bash
