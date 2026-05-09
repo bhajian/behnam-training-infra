@@ -71,7 +71,7 @@ filestore_controller_spool = {
 # ---
 filestore_jail = {
   existing = {
-    id = "computefilesystem-e00m8ghy7342rqa8mv"
+    id = "computefilesystem-e00kr1pch5f6nb1dx7"
   }
 }
 
@@ -166,7 +166,7 @@ nfs_in_k8s = {
   enabled         = true
   version         = "1.2.0"
   use_stable_repo = true
-  size_gibibytes  = 3720
+  size_gibibytes  = 930
   disk_type       = "NETWORK_SSD_IO_M3"
   filesystem_type = "ext4"
   threads         = 32
@@ -309,8 +309,8 @@ slurm_nodeset_workers = [
       min_size = null
     }
     resource = {
-      platform = "gpu-l40s-a"
-      preset   = "1gpu-16vcpu-64gb"
+      platform = "gpu-l40s-d"
+      preset   = "1gpu-16vcpu-96gb"
     }
     boot_disk = {
       type                 = "NETWORK_SSD"
