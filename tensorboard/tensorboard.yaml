@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tensorboard
+  namespace: mlflow
+  labels:
+    app: tensorboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tensorboard
+  template:
+    metadata:
+      labels:
+        app: tensorboard
+    spec:
+      containers:
+        - name: tensorboard
+          image: tensorflow/tensorflow:2.19.0
+          command: ["sh", "-c"]
+          args:
+            - pip install torch_tb_profiler &&
+              tensorboard
+              --logdir /mnt/data/llama-3.1-8b-lora-adapter/profiler
+              --host 0.0.0.0
+              --port 6006
+          ports:
+            - containerPort: 6006
+              name: http
+          resources:
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+          volumeMounts:
+            - name: data
+              mountPath: /mnt/data
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 6006
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 6006
+            initialDelaySeconds: 30
+            periodSeconds: 30
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/jail-submount-data
+            type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tensorboard
+  namespace: mlflow
+spec:
+  type: ClusterIP
+  selector:
+    app: tensorboard
+  ports:
+    - port: 6006
+      targetPort: 6006
+      protocol: TCP
+      name: http
