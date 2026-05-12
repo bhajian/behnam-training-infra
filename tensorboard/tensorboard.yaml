@@ -22,7 +22,7 @@ spec:
           args:
             - pip install torch_tb_profiler &&
               tensorboard
-              --logdir /mnt/data/llama-3.1-8b-lora-adapter/profiler
+              --logdir /mnt/data/llama-3.1-8b-lora-profile-run/profiler
               --host 0.0.0.0
               --port 6006
           ports:
@@ -30,11 +30,11 @@ spec:
               name: http
           resources:
             limits:
-              cpu: "1"
-              memory: "2Gi"
+              cpu: "2"
+              memory: "8Gi"
             requests:
               cpu: "500m"
-              memory: "1Gi"
+              memory: "4Gi"
           volumeMounts:
             - name: data
               mountPath: /mnt/data
